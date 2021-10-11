@@ -1,0 +1,41 @@
+@startuml
+Class Connect4
+Class Player
+Class Board
+Class Turn
+Class Goal
+Class Diagonal
+Class Vertical
+Class Horizontal
+Class Color
+Class Row
+Class Column
+Class Red
+Class Blue
+
+Connect4 *-down-> Board
+Connect4 *-down-> Player
+Connect4 *-down-> Turn
+
+Board *-down-> Column
+Board *-down-> Row
+
+Color -down-|> Red
+Color -down-|> Blue
+
+Goal -down-|> Diagonal
+Goal -down-|> Vertical
+Goal -down-|> Horizontal
+
+Player -down-> Color
+Color -down-> Disc
+
+
+Player o-down->Goal
+
+Board o-down->Disc
+
+Disc -down> Put 
+Turn -down> Put
+Board -down> Put
+@enduml
