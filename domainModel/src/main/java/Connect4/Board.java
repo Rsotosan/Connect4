@@ -3,13 +3,13 @@ package Connect4;
 public class Board {
     private final int rows = 6;
     private final int columns = 8;
-    private int [][] board;
+    private Color [][] board;
 
     public Board(){
-        board = new int[rows][columns];
+        board = new Color[rows][columns];
         for(int i=0; i<rows; i++){
             for(int j=0; j<columns; j++){
-                board[i][j] = 0;
+                board[i][j] = Color.NULL;
             }
         }
     }
@@ -23,11 +23,11 @@ public class Board {
         }
     }
 
-    public void put(int column, int color){
+    public void put(int column, Color color){
         boolean isPut = false;
         int i = rows-1;
         do{
-            if(board[i][column] == 0){
+            if(board[i][column].isNull()){
                 board[i][column] = color;
                 isPut = true;
             }
@@ -39,8 +39,8 @@ public class Board {
         boolean fullBoard = true;
         for(int i=0; i<rows; i++){
             for(int j=0; j<columns; j++) {
-                if(board[i][j] != 0){
-                    if (checkCell(i, j) != 0) return GameStatus.WIN;
+                if(!board[i][j].isNull()){
+                    if (!checkCell(i, j).isNull()) return GameStatus.WIN;
                 } else if(fullBoard){
                     fullBoard = false;
                 }
@@ -52,7 +52,7 @@ public class Board {
         return GameStatus.PLAYING;
     }
 
-    public int checkCell(int row, int column){
+    public Color checkCell(int row, int column){
         int horizontal = 0;
         int vertical = 0;
         int diagonalRight = 0;
@@ -61,17 +61,17 @@ public class Board {
             if((column+i) < columns && board[row][column+i] == board[row][column]) horizontal++;
             if((row+i) < rows && board[row+1][column] == board[row][column]) vertical++;
             if((row+i) < rows && (column+i) < columns && board[row+i][column+i] == board[row][column]) diagonalRight++;
-            if((row+i) < rows && (column-i) > 0 && board[row+i][column-i] == board[row][column]) diagonalLeft++;
+            if((row+i) < rows && (column-i) >= 0 && board[row+i][column-i] == board[row][column]) diagonalLeft++;
         }
         if(horizontal == 3 || vertical == 3 || diagonalLeft == 3 || diagonalRight == 3){
             return board[row][column];
         }
-        return 0;
+        return Color.NULL;
     }
 
     public boolean checkColumnFree(int column) {
         for(int i = 0; i<rows; i++){
-            if(board[i][column]==0){
+            if(board[i][column].isNull()){
                 return true;
             }
         }

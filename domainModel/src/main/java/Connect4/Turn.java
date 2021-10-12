@@ -13,7 +13,7 @@ public class Turn {
     public Turn (){
         players = new Player[numPlayers];
         for(int i = 0; i<numPlayers; i++){
-            players[i] = new Player(i+1);
+            players[i] = new Player(Color.get(i));
         }
         activePlayer = 0;
     }

@@ -3,13 +3,13 @@ package Connect4;
 import java.util.Scanner;
 
 public class Player {
-    private int color;
+    private Color color;
 
-    public Player(int color) {
+    public Player(Color color) {
         this.color = color;
     }
 
-    public int getColor() {
+    public Color getColor() {
         return this.color;
     }
 
