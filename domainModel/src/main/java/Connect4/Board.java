@@ -15,7 +15,7 @@ public class Board {
     }
 
     public void print(){
-        for(int i=0; i<rows; i++){
+        for(int i=rows-1; i>=0; i--){
             for(int j=0; j<columns; j++){
                 System.out.print(board[i][j] + " ");
             }
@@ -25,14 +25,14 @@ public class Board {
 
     public void put(int column, Color color){
         boolean isPut = false;
-        int i = rows-1;
+        int i = 0;
         do{
             if(board[i][column].isNull()){
                 board[i][column] = color;
                 isPut = true;
             }
-            i--;
-        }while(!isPut && i >= 0);
+            i++;
+        }while(!isPut && i < rows);
     }
 
     public GameStatus checkGameStatus(){
@@ -59,7 +59,7 @@ public class Board {
         int diagonalLeft = 0;
         for(int i=1; i<4; i++){
             if((column+i) < columns && board[row][column+i] == board[row][column]) horizontal++;
-            if((row+i) < rows && board[row+1][column] == board[row][column]) vertical++;
+            if((row+i) < rows && board[row+i][column] == board[row][column]) vertical++;
             if((row+i) < rows && (column+i) < columns && board[row+i][column+i] == board[row][column]) diagonalRight++;
             if((row+i) < rows && (column-i) >= 0 && board[row+i][column-i] == board[row][column]) diagonalLeft++;
         }
