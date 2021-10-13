@@ -1,4 +1,4 @@
-package connect4;
+package connect4.utils;
 
 import java.util.Scanner;
 
