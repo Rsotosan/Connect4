@@ -1,6 +1,7 @@
 package connect4.models;
 
 import connect4.types.Color;
+import connect4.types.Coordinate;
 import connect4.types.GameStatus;
 
 public class Game {
@@ -37,15 +38,15 @@ public class Game {
     }
 
     public int getNumRows(){
-        return board.getRows();
+        return Coordinate.NUMROWS;
     }
 
     public int getNumColumns(){
-        return board.getColumns();
+        return Coordinate.NUMCOLUMNS;
     }
 
     public Color getCoordinate(int i, int j){
-        return board.getCoordinate(i,j);
+        return board.getCoordinateColor(i,j);
     }
 
     public GameStatus getGameStatus(){
